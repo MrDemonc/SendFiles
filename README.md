@@ -38,21 +38,22 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 ### 3. Build Commands
 
-# Clone the repository
+### Clone the repository
 ```bash
 git clone https://github.com/yourusername/SendFiles.git
+```
 
-# Build the project
+### Build the project
 ```bash
 cargo build --release
 ```
 
-# Run the application
+### Run the application
 ```bash
 ./target/release/sendfiles
 ```
 
-# Insatall .deb
+### Insatall .deb
 ```bash
 sudo dpkg -i /target/debian/sendfiles_1.0.0_amd64.deb
 ```
