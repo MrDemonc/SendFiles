@@ -3,7 +3,7 @@ name = "SendFiles"
 version = "0.1.0"
 edition = "2024"
 description = "Send files to other devices on the same network"
-license = "MIT"
+license = "GPL-3.0"
 authors = ["MrDemon"]
 
 [package.metadata.deb]
@@ -11,7 +11,7 @@ maintainer = "MrDemon"
 section = "utils"
 assets = [
     ["target/release/SendFiles", "usr/bin/sendfiles", "755"],
-    ["assets/sendfiles.desktop", "usr/share/applications/com.example.SendFiles.desktop", "644"],
+    ["assets/sendfiles.desktop", "usr/share/applications/SendFiles.desktop", "644"],
     ["assets/sendfiles.png", "usr/share/icons/hicolor/512x512/apps/sendfiles.png", "644"]
 ]
 
