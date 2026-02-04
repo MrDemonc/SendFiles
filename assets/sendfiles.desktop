@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=SendFiles
+Comment=Send files to other devices on the same network
+Exec=/usr/bin/sendfiles
+Icon=sendfiles
+Terminal=false
+Categories=Network;FileTransfer;Utility;
+StartupWMClass=SendFiles

@@ -1,0 +1,65 @@
+[package]
+name = "rqs_lib"
+version = "0.11.5"
+edition = "2024"
+authors = ["martichou"]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "core_bin"
+path = "src/bin.rs"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+bluer = { version = "0.17", features = ["full"], optional = true }
+
+[target.'cfg(all(target_arch = "aarch64", target_os = "linux"))'.dependencies]
+dbus = { version = "0.9", features = ["vendored"] }
+
+[dependencies]
+anyhow = "1.0"
+base64 = "0.22"
+btleplug = { version = "0.11", optional = true }
+bytes = "1.10"
+directories = "6.0"
+futures = "0.3"
+get_if_addrs = "0.5"
+hex = "0.4"
+hkdf = "0.12"
+hmac = "0.12"
+libaes = "0.7"
+log = "0.4"
+mdns-sd = { git = "https://github.com/Martichou/mdns-sd", branch = "unsolicited" }
+mime_guess = "2.0"
+num-bigint = "0.4"
+once_cell = "1.20"
+p256 = { version = "0.13", features = ["ecdh"] }
+prost = "0.13"
+rand = "0.9"
+serde = { version = "1.0", features = ["derive"] }
+sha2 = "0.10"
+sys_metrics = { git = "https://github.com/Martichou/sys_metrics" }
+tokio = { version = "1.43", features = [
+    "macros",
+    "rt",
+    "rt-multi-thread",
+    "net",
+    "sync",
+    "time",
+    "io-util",
+    "signal",
+] }
+tokio-util = { version = "0.7", features = ["rt"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = "1.15"
+
+[build-dependencies]
+prost-build = "0.13"
+
+[features]
+default = ["experimental"]
+experimental = ["bluer", "btleplug"]
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1

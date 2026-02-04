@@ -1,0 +1,17 @@
+# Rust / Cargo
+/target
+Cargo.lock
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project Specific
+/rqs_lib/target
+.env

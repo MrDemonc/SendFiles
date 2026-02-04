@@ -1,0 +1,26 @@
+[package]
+name = "SendFiles"
+version = "0.1.0"
+edition = "2024"
+description = "Send files to other devices on the same network"
+license = "MIT"
+authors = ["MrDemon"]
+
+[package.metadata.deb]
+maintainer = "MrDemon"
+section = "utils"
+assets = [
+    ["target/release/SendFiles", "usr/bin/sendfiles", "755"],
+    ["assets/sendfiles.desktop", "usr/share/applications/com.example.SendFiles.desktop", "644"],
+    ["assets/sendfiles.png", "usr/share/icons/hicolor/512x512/apps/sendfiles.png", "644"]
+]
+
+[dependencies]
+gtk4 = "0.9"
+libadwaita = "0.7.1"
+anyhow = "1.0"
+async-channel = "2.3.1"
+futures-util = "0.3"
+tokio = { version = "1.43", features = ["rt-multi-thread", "macros", "sync", "time", "net", "io-util"] }
+rqs_lib = { path = "rqs_lib", default-features = false, features = ["experimental"] }
+gettext-rs = { version = "0.7", features = ["gettext-system"] }

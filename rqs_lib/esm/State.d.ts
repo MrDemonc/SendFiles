@@ -1,0 +1,1 @@
+export type State = "Initial" | "ReceivedConnectionRequest" | "SentUkeyServerInit" | "SentUkeyClientInit" | "SentUkeyClientFinish" | "SentPairedKeyEncryption" | "ReceivedUkeyClientFinish" | "SentConnectionResponse" | "SentPairedKeyResult" | "SentIntroduction" | "ReceivedPairedKeyResult" | "WaitingForUserConsent" | "ReceivingFiles" | "SendingFiles" | "Disconnected" | "Finished";
