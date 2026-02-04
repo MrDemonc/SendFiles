@@ -60,7 +60,9 @@ sudo dpkg -i /target/debian/sendfiles_1.0.0_amd64.deb
 
 ## Credits
 
-Special thanks to **[nozwock](https://github.com/nozwock)** for the original implementation of **rqs_lib** (`rquickshare`), which provides the backbone for the communication protocol used in this project.
+Special thanks to:
+- **[nozwock](https://github.com/nozwock)** for the original implementation of **rqs_lib** (`rquickshare`), which provides the backbone for the communication protocol used in this project.
+- **[Martichou](https://github.com/Martichou)** for maintaining the fork of **rqs_lib** and providing the **mdns-sd** and **sys_metrics** libraries used in this project.
 
 ---
 *Empowering seamless file transfers between Linux and Android.*

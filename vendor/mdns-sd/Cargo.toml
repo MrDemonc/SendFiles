@@ -1,0 +1,27 @@
+[package]
+name = "mdns-sd"
+version = "0.10.4"
+authors = ["keepsimple <keepsimple@gmail.com>"]
+edition = "2018"
+rust-version = "1.61.0"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/keepsimple1/mdns-sd"
+documentation = "https://docs.rs/mdns-sd"
+keywords = ["mdns", "discovery", "service-discovery", "zeroconf", "dns-sd"]
+categories = ["network-programming"]
+description = "mDNS Service Discovery library with no async runtime dependency"
+
+[features]
+async = ["flume/async"]
+logging = ["log"]
+default = ["async", "logging"]
+
+[dependencies]
+flume = { version = "0.11", default-features = false } # channel between threads
+if-addrs = { version = "0.10", features = ["link-local"] } # get local IP addresses
+log = { version = "0.4", optional = true }             # logging
+polling = "2.1"                                        # select/poll sockets
+socket2 = { version = "0.4", features = ["all"] }      # socket APIs
+
+[dev-dependencies]
+fastrand = "1.8"
