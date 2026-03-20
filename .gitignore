@@ -16,3 +16,12 @@ Thumbs.db
 /rqs_lib/target
 /vendor/*/target
 .env
+
+# Arch Linux
+/pkg/
+/src/sendfiles/
+/src/sendfiles-debug/
+/sendfiles/
+*.pkg.tar.zst
+*.pkg.tar.xz
+*.src.tar.gz

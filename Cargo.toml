@@ -15,6 +15,17 @@ assets = [
     ["assets/sendfiles.png", "usr/share/icons/hicolor/512x512/apps/sendfiles.png", "644"]
 ]
 
+[package.metadata.aur]
+maintainer = "MrDemon"
+depends = ["gtk4", "libadwaita", "gettext"]
+build-depends = ["cargo"]
+bin-name = "sendfiles"
+assets = [
+    ["target/release/SendFiles", "usr/bin/sendfiles", "755"],
+    ["assets/sendfiles.desktop", "usr/share/applications/SendFiles.desktop", "644"],
+    ["assets/sendfiles.png", "usr/share/icons/hicolor/512x512/apps/sendfiles.png", "644"]
+]
+
 [dependencies]
 gtk4 = "0.9"
 libadwaita = "0.7.1"

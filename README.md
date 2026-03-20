@@ -30,6 +30,12 @@ On Debian/Ubuntu-based systems, run:
 sudo apt update && sudo apt install -y build-essential libgtk-4-dev libadwaita-1-dev gettext pkg-config curl
 ```
 
+On Arch Linux, run:
+
+```bash
+sudo pacman -S base-devel libadwaita gettext cargo git
+```
+
 ### 2. Install Rust
 If you don't have Rust installed:
 ```bash
@@ -53,9 +59,14 @@ cargo build --release
 ./target/release/sendfiles
 ```
 
-### Insatall .deb
+### Install .deb (Debian/Ubuntu)
 ```bash
-sudo dpkg -i /target/debian/sendfiles_1.0.0_amd64.deb
+sudo dpkg -i target/debian/sendfiles_0.1.0_amd64.deb
+```
+
+### Install Arch Linux package
+```bash
+makepkg -si
 ```
 
 ## Credits
