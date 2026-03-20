@@ -34,6 +34,8 @@ On Arch Linux, run:
 
 ```bash
 sudo pacman -S base-devel libadwaita gettext cargo git
+# Optional: for building .deb packages
+sudo pacman -S cargo-deb 
 ```
 
 ### 2. Install Rust
@@ -49,7 +51,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 git clone https://github.com/yourusername/SendFiles.git
 ```
 
-### Build the project
+### Build binary
 ```bash
 cargo build --release
 ```
@@ -59,12 +61,13 @@ cargo build --release
 ./target/release/sendfiles
 ```
 
-### Install .deb (Debian/Ubuntu)
+### Build and install .deb (Debian/Ubuntu)
 ```bash
-sudo dpkg -i target/debian/sendfiles_0.1.0_amd64.deb
+cargo deb
+sudo dpkg -i target/debian/sendfiles_0.1.0-1_amd64.deb
 ```
 
-### Install Arch Linux package
+### Build and install Arch Linux package
 ```bash
 makepkg -si
 ```
