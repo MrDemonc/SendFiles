@@ -334,6 +334,39 @@ fn build_ui(app: &Application) {
     page3_box.append(&req_cancel_button);
 
     stack.add_named(&page3_box, Some("request"));
+    
+    // --- Page 4: Result State ---
+    let page4_box = Box::new(Orientation::Vertical, 12);
+    page4_box.set_valign(Align::Center);
+    page4_box.set_halign(Align::Center);
+    page4_box.set_margin_bottom(24);
+    page4_box.set_margin_top(24);
+    page4_box.set_margin_start(24);
+    page4_box.set_margin_end(24);
+
+    let result_icon = gtk4::Image::from_icon_name("emblem-ok-symbolic");
+    result_icon.set_pixel_size(64);
+
+    let result_title = gtk4::Label::new(Some("Transfer Result"));
+    result_title.add_css_class("title-2");
+
+    let result_message = gtk4::Label::new(None);
+    result_message.add_css_class("title-4");
+    result_message.set_wrap(true);
+    result_message.set_max_width_chars(30);
+
+    let done_button = Button::with_label("Done");
+    done_button.add_css_class("suggested-action");
+    done_button.add_css_class("pill");
+    done_button.set_width_request(120);
+
+    page4_box.append(&result_icon);
+    page4_box.append(&result_title);
+    page4_box.append(&result_message);
+    page4_box.append(&done_button);
+
+    stack.add_named(&page4_box, Some("result"));
+
     content.append(&stack);
 
     let window = ApplicationWindow::builder()
@@ -362,6 +395,8 @@ fn build_ui(app: &Application) {
             let accept_button_weak = accept_button.downgrade();
             let decline_button_weak = decline_button.downgrade();
             let req_cancel_button_weak = req_cancel_button.downgrade();
+            let result_icon_weak = result_icon.downgrade();
+            let result_message_weak = result_message.downgrade();
 
             glib::MainContext::default().spawn_local(async move {
                 while let Ok(event) = receiver.recv().await {
@@ -434,7 +469,14 @@ fn build_ui(app: &Application) {
                             if let Some(s) = stack_weak.upgrade() {
                                 if let Some(pb) = req_progress_weak.upgrade() { pb.set_visible(false); }
                                 if let Some(pb) = outbound_progress_weak.upgrade() { pb.set_visible(false); }
-                                s.set_visible_child_name("initial");
+                                
+                                if let Some(ri) = result_icon_weak.upgrade() {
+                                    ri.set_icon_name(Some("emblem-ok-symbolic"));
+                                }
+                                if let Some(rm) = result_message_weak.upgrade() {
+                                    rm.set_text("Transfer Successful");
+                                }
+                                s.set_visible_child_name("result");
                             }
                         }
                         ServiceEvent::Error(err) => {
@@ -445,7 +487,14 @@ fn build_ui(app: &Application) {
                             if let Some(s) = stack_weak.upgrade() {
                                 if let Some(pb) = req_progress_weak.upgrade() { pb.set_visible(false); }
                                 if let Some(pb) = outbound_progress_weak.upgrade() { pb.set_visible(false); }
-                                s.set_visible_child_name("initial");
+                                
+                                if let Some(ri) = result_icon_weak.upgrade() {
+                                    ri.set_icon_name(Some("dialog-error-symbolic"));
+                                }
+                                if let Some(rm) = result_message_weak.upgrade() {
+                                    rm.set_text(&format!("Error: {}", err));
+                                }
+                                s.set_visible_child_name("result");
                             }
                         }
                     }
@@ -571,6 +620,10 @@ fn build_ui(app: &Application) {
         }
         *current_transfer_id.lock().unwrap() = None;
         println!("DEBUG: Inbound transfer manually canceled and state cleared");
+        stack.set_visible_child_name("initial");
+    }));
+
+    done_button.connect_clicked(glib::clone!(#[weak] stack, move |_| {
         stack.set_visible_child_name("initial");
     }));
 
