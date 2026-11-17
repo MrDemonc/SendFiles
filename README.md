@@ -52,6 +52,7 @@ sudo pacman -S cargo-deb
 If you don't have Rust installed:
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
 ```
 
 ### 3. Build Commands
@@ -79,6 +80,7 @@ sudo dpkg -i target/debian/sendfiles_0.1.0-1_amd64.deb
 
 ### Build and install .rpm (Fedora)
 ```bash
+cargo build --release
 cargo generate-rpm
 sudo dnf install target/generate-rpm/sendfiles-0.1.0-1.*.rpm
 
