@@ -7,7 +7,7 @@ arch=('x86_64' 'aarch64')
 url="https://github.com/MrDemon/SendFiles"
 license=('GPL3')
 depends=('gtk4' 'libadwaita' 'gettext')
-makedepends=('cargo' 'git')
+makedepends=('cargo' 'git' 'protobuf')
 source=("${pkgname}::git+file://$PWD")
 sha256sums=('SKIP')
 

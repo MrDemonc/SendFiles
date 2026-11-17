@@ -12,6 +12,7 @@ BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
 BuildRequires:  gettext
 BuildRequires:  pkgconf-pkg-config
+BuildRequires:  protobuf-compiler
 Requires:       gtk4
 Requires:       libadwaita
 Requires:       gettext

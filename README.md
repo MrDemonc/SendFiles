@@ -27,13 +27,13 @@
 On Debian/Ubuntu-based systems, run:
 
 ```bash
-sudo apt update && sudo apt install -y build-essential libgtk-4-dev libadwaita-1-dev gettext pkg-config curl
+sudo apt update && sudo apt install -y build-essential libgtk-4-dev libadwaita-1-dev gettext pkg-config curl protobuf-compiler
 ```
 
 On Fedora, run:
 
 ```bash
-sudo dnf install -y gcc gtk4-devel libadwaita-devel gettext pkgconf-pkg-config cargo git curl
+sudo dnf install -y gcc gtk4-devel libadwaita-devel gettext pkgconf-pkg-config cargo git curl protobuf-compiler
 # Optional: for building .rpm packages
 cargo install cargo-generate-rpm
 # Or install rpm-build if building via sendfiles.spec
@@ -43,7 +43,7 @@ cargo install cargo-generate-rpm
 On Arch Linux, run:
 
 ```bash
-sudo pacman -S base-devel libadwaita gettext cargo git
+sudo pacman -S base-devel libadwaita gettext cargo git protobuf
 # Optional: for building .deb packages
 sudo pacman -S cargo-deb 
 ```
