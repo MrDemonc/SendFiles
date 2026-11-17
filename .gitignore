@@ -25,3 +25,7 @@ Thumbs.db
 *.pkg.tar.zst
 *.pkg.tar.xz
 *.src.tar.gz
+
+# Fedora / RPM
+*.rpm
+/rpmbuild/

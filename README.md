@@ -30,6 +30,16 @@ On Debian/Ubuntu-based systems, run:
 sudo apt update && sudo apt install -y build-essential libgtk-4-dev libadwaita-1-dev gettext pkg-config curl
 ```
 
+On Fedora, run:
+
+```bash
+sudo dnf install -y gcc gtk4-devel libadwaita-devel gettext pkgconf-pkg-config cargo git curl
+# Optional: for building .rpm packages
+cargo install cargo-generate-rpm
+# Or install rpm-build if building via sendfiles.spec
+# sudo dnf install -y rpm-build
+```
+
 On Arch Linux, run:
 
 ```bash
@@ -65,6 +75,16 @@ cargo build --release
 ```bash
 cargo deb
 sudo dpkg -i target/debian/sendfiles_0.1.0-1_amd64.deb
+```
+
+### Build and install .rpm (Fedora)
+```bash
+cargo generate-rpm
+sudo dnf install target/generate-rpm/sendfiles-0.1.0-1.*.rpm
+
+# Or build via rpmbuild using sendfiles.spec:
+# rpmbuild -bb --define "_topdir $PWD/rpmbuild" --define "_builddir $PWD" sendfiles.spec
+# sudo dnf install rpmbuild/RPMS/*/*.rpm
 ```
 
 ### Build and install Arch Linux package

@@ -26,6 +26,21 @@ assets = [
     ["assets/sendfiles.png", "usr/share/icons/hicolor/512x512/apps/sendfiles.png", "644"]
 ]
 
+[package.metadata.generate-rpm]
+name = "sendfiles"
+summary = "Send files to other devices on the same network"
+license = "GPL-3.0"
+assets = [
+    { source = "target/release/SendFiles", dest = "/usr/bin/sendfiles", mode = "0755" },
+    { source = "assets/sendfiles.desktop", dest = "/usr/share/applications/SendFiles.desktop", mode = "0644" },
+    { source = "assets/sendfiles.png", dest = "/usr/share/icons/hicolor/512x512/apps/sendfiles.png", mode = "0644" }
+]
+
+[package.metadata.generate-rpm.requires]
+gtk4 = "*"
+libadwaita = "*"
+gettext = "*"
+
 [dependencies]
 gtk4 = "0.9"
 libadwaita = "0.7.1"
