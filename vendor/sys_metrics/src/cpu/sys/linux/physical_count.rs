@@ -13,7 +13,7 @@ fn get_from_glob() -> Result<u32, Error> {
     let mut acc = HashSet::<u32>::new();
 
     for entry in entries {
-        let entry = entry.map_err(|e| e.into_error())?;
+        let entry = entry.map_err(Error::from)?;
         // Read the content & trim the result and parse to u32
         match read_and_trim(entry)?.parse() {
             Ok(val) => acc.insert(val),
